@@ -28,7 +28,7 @@ class Boid {
   }
   maxSpeedCheck() {
     const speed = Math.hypot(this.velocity[0], this.velocity[1]);
-    if (speed > maxSpeed) {
+    if (speed > Boid.maxSpeed) {
       this.velocity = [Boid.maxSpeed*this.velocity[0]/speed,
                      Boid.maxSpeed*this.velocity[1]/speed];
     }
@@ -61,7 +61,7 @@ class Boid {
   }
 }
 
-const numBoids = 20;
+const numBoids = 40;
 
 const updateIntervals = [];
 

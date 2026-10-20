@@ -1,6 +1,6 @@
 div {
-  width: 4px;
-  height: 4px;
+  width: 16px;
+  height: 16px;
   background-color: black;
   position: fixed;
 }
