@@ -72,7 +72,7 @@ for (let i = 0; i < numBoids; i++) {
   const iBoid = new Boid();
   Boid.boids.push(iBoid);
   updateIntervals.push(setInterval(() => {
-      iBoid.velocityPositionUpdate(); iBoid.borderCheck(); iBoid.velocityCheck();
+      iBoid.velocityPositionUpdate(); iBoid.borderCheck(); iBoid.maxSpeedCheck();
     }, 1000/30)
   );
   document.body.appendChild(iBoid.element);
