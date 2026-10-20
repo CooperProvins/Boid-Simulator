@@ -8,18 +8,18 @@ class Boid {
     this.velocity = [Math.random()*2-1,Math.random()*2-1];
 
     const velocityMagnitude = Math.hypot(this.velocity[0], this.velocity[1]);
-    this.velocity = [startingVelocityFactor*this.velocity[0]/velocityMagnitude,
-                     startingVelocityFactor*this.velocity[1]/velocityMagnitude];
+    this.velocity = [Boid.startingVelocityFactor*this.velocity[0]/velocityMagnitude,
+                     Boid.startingVelocityFactor*this.velocity[1]/velocityMagnitude];
     this.positionParity();
   }
   boidsWithinRadius(radius) {
     inBoids = [];
-    for (Boid iBoid : boids) {
-      if ((this.position[0]-iBoid.position[0])*(this.position[0]-iBoid.position[0]) +
-          (this.position[1]-iBoid.position[1])*(this.position[1]-iBoid.position[1]) 
-          < radius*radius) {
+    for (const iBoid of Boid.boids) {
+      const dx = this.position[0]-iBoid.position[0];
+      const dy = this.position[1]-iBoid.position[1];
+      if (dx*dx+dy*dy <= radius*radius) {
             inBoids.push(iBoid);
-          }
+      }
     }
     return inBoids;
   }
