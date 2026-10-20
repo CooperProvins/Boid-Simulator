@@ -1,6 +1,6 @@
 class Boid {
   static boids = [];
-  static startingVelocityFactor = 7;
+  static startingVelocity = 7;
   
   constructor() {
     this.element = document.createElement("div");
@@ -8,8 +8,8 @@ class Boid {
     this.velocity = [Math.random()*2-1,Math.random()*2-1];
 
     const velocityMagnitude = Math.hypot(this.velocity[0], this.velocity[1]);
-    this.velocity = [Boid.startingVelocityFactor*this.velocity[0]/velocityMagnitude,
-                     Boid.startingVelocityFactor*this.velocity[1]/velocityMagnitude];
+    this.velocity = [Boid.startingVelocity*this.velocity[0]/velocityMagnitude,
+                     Boid.startingVelocity*this.velocity[1]/velocityMagnitude];
     this.positionParity();
   }
   boidsWithinRadius(radius) {
