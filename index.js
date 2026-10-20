@@ -1,15 +1,16 @@
 class Boid {
   static boids = [];
-  static startingVelocity = 7;
+  static startingSpeed = 2;
+  static maxSpeed = 5;
   
   constructor() {
     this.element = document.createElement("div");
     this.position = [Math.floor(Math.random()*(screenWidth)+1), Math.floor(Math.random()*(screenHeight)+1)];
     this.velocity = [Math.random()*2-1,Math.random()*2-1];
 
-    const velocityMagnitude = Math.hypot(this.velocity[0], this.velocity[1]);
-    this.velocity = [Boid.startingVelocity*this.velocity[0]/velocityMagnitude,
-                     Boid.startingVelocity*this.velocity[1]/velocityMagnitude];
+    const speed = Math.hypot(this.velocity[0], this.velocity[1]);
+    this.velocity = [Boid.startingSpeed*this.velocity[0]/speed,
+                     Boid.startingSpeed*this.velocity[1]/speed];
     this.positionParity();
   }
   boidsWithinRadius(radius) {
