@@ -1,6 +1,6 @@
 class Boid {
   static boids = [];
-  static startingVelocityFactor = 2;
+  static startingVelocityFactor = 7;
   
   constructor() {
     this.element = document.createElement("div");
