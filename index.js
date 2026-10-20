@@ -1,5 +1,6 @@
 class Boid {
   static boids = [];
+  static startingVelocityFactor = 2;
   
   constructor() {
     this.element = document.createElement("div");
@@ -14,6 +15,17 @@ class Boid {
     const velocityPositionUpdateInterval = setInterval(() => {this.velocityPositionUpdate(); this.borderCheck();}, 1000/30);
 
     document.body.appendChild(this.element);
+  }
+  boidsWithinRadius(radius) {
+    inBoids = [];
+    for (Boid iBoid : boids) {
+      if ((this.position[0]-iBoid.position[0])*(this.position[0]-iBoid.position[0]) +
+          (this.position[1]-iBoid.position[1])*(this.position[1]-iBoid.position[1]) 
+          < radius*radius) {
+            inBoids.push(iBoid);
+          }
+    }
+    return inBoids;
   }
   borderCheck() {
     if (this.position[0] < 0) {
@@ -44,7 +56,6 @@ class Boid {
 }
 
 const numBoids = 20;
-const startingVelocityFactor = 2;
 
 let screenWidth = window.innerWidth;
 let screenHeight = window.innerHeight;
