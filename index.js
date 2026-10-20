@@ -30,7 +30,7 @@ class Boid {
     const speed = Math.hypot(this.velocity[0], this.velocity[1]);
     if (speed > maxSpeed) {
       this.velocity = [Boid.maxSpeed*this.velocity[0]/speed,
-                     Boid.maxSpeed*this.velocity[1]/speed]
+                     Boid.maxSpeed*this.velocity[1]/speed];
     }
   }
   borderCheck() {
