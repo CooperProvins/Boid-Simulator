@@ -44,7 +44,7 @@ class Boid {
 }
 
 const numBoids = 20;
-const velocityFactor = 2;
+const startingVelocityFactor = 2;
 
 let screenWidth = window.innerWidth;
 let screenHeight = window.innerHeight;
