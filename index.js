@@ -14,8 +14,10 @@ class Boid {
     this.positionParity();
   }
   boidsWithinRadius(radius) {
-    inBoids = [];
+    const inBoids = [];
     for (const iBoid of Boid.boids) {
+      if (iBoid == this) continue;
+      
       const dx = this.position[0]-iBoid.position[0];
       const dy = this.position[1]-iBoid.position[1];
       if (dx*dx+dy*dy <= radius*radius) {
