@@ -11,10 +11,6 @@ class Boid {
     this.velocity = [startingVelocityFactor*this.velocity[0]/velocityMagnitude,
                      startingVelocityFactor*this.velocity[1]/velocityMagnitude];
     this.positionParity();
-
-    const velocityPositionUpdateInterval = setInterval(() => {this.velocityPositionUpdate(); this.borderCheck();}, 1000/30);
-
-    document.body.appendChild(this.element);
   }
   boidsWithinRadius(radius) {
     inBoids = [];
@@ -57,6 +53,8 @@ class Boid {
 
 const numBoids = 20;
 
+const updateIntervals = [];
+
 let screenWidth = window.innerWidth;
 let screenHeight = window.innerHeight;
 
@@ -65,6 +63,8 @@ window.addEventListener('resize',updateScreenSize);
 for (let i = 0; i < numBoids; i++) {
   const iBoid = new Boid();
   Boid.boids.push(iBoid);
+  updateIntervals.push(setInterval(() => {iBoid.velocityPositionUpdate(); iBoid.borderCheck();}, 1000/30));
+  document.body.appendChild(iBoid.element);
 }
 
 function updateScreenSize() {
