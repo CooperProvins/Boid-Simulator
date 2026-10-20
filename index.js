@@ -24,6 +24,13 @@ class Boid {
     }
     return inBoids;
   }
+  maxSpeedCheck() {
+    const speed = Math.hypot(this.velocity[0], this.velocity[1]);
+    if (speed > maxSpeed) {
+      this.velocity = [Boid.maxSpeed*this.velocity[0]/speed,
+                     Boid.maxSpeed*this.velocity[1]/speed]
+    }
+  }
   borderCheck() {
     if (this.position[0] < 0) {
       this.velocity[0] = -this.velocity[0];
@@ -64,7 +71,10 @@ window.addEventListener('resize',updateScreenSize);
 for (let i = 0; i < numBoids; i++) {
   const iBoid = new Boid();
   Boid.boids.push(iBoid);
-  updateIntervals.push(setInterval(() => {iBoid.velocityPositionUpdate(); iBoid.borderCheck();}, 1000/30));
+  updateIntervals.push(setInterval(() => {
+      iBoid.velocityPositionUpdate(); iBoid.borderCheck(); iBoid.velocityCheck();
+    }, 1000/30)
+  );
   document.body.appendChild(iBoid.element);
 }
 
