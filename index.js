@@ -3,13 +3,13 @@ class Boid {
   static startingSpeed = 2;
   static maxSpeed = 5;
 
-  static separationRadius = 30;
-  static separationFactor = 1;
+  static separationRadius = 45;
+  static separationFactor = 1.2;
 
-  static alignmentRadius = 200;
-  static alignmentFactor = 0.4;
+  static alignmentRadius = 90;
+  static alignmentFactor = 0.03;
 
-  static cohesionRadius = 250;
+  static cohesionRadius = 120;
   static cohesionFactor = 0.0002;
 
   
@@ -38,8 +38,11 @@ class Boid {
   }
   separation(){
     for (const iBoid of this.boidsWithinRadius(Boid.separationRadius)){
-      this.velocity[0] += 1/(iBoid.position[0]-this.position[0])*Boid.separationFactor;
-      this.velocity[1] += 1/(iBoid.position[1]-this.position[1])*Boid.separationFactor;
+      const dx = this.position[0] - iBoid.position[0];
+      const dy = this.position[1] - iBoid.position[1];
+      const distSq = dx*dx+dy*dy;
+      this.velocity[0] += dx/distSq*Boid.separationFactor;
+      this.velocity[1] += dy/distSq*Boid.separationFactor;
     }
   }
   cohesion(){
