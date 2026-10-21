@@ -12,6 +12,9 @@ class Boid {
   static cohesionRadius = 120;
   static cohesionFactor = 0.0002;
 
+  static headingRandomFactor = 10;
+  static headingUniqueFactor = 10;
+
   
   constructor() {
     this.element = document.createElement("div");
@@ -35,6 +38,12 @@ class Boid {
       }
     }
     return inBoids;
+  }
+  randomizeHeading() {
+    this.velocity = [
+      this.velocity[0]+Boid.headingRandomFactor*(Math.pow(Math.random(),Boid.headingUniqueFactor))*(Math.random() < 0.5? -1: 1),
+      this.velocity[1]+Boid.headingRandomFactor*(Math.pow(Math.random(),Boid.headingUniqueFactor))*(Math.random() < 0.5? -1: 1),
+    ];
   }
   separation(){
     for (const iBoid of this.boidsWithinRadius(Boid.separationRadius)){
@@ -119,7 +128,7 @@ for (let i = 0; i < numBoids; i++) {
   const iBoid = new Boid();
   Boid.boids.push(iBoid);
   updateIntervals.push(setInterval(() => {
-      iBoid.separation(); iBoid.cohesion(); iBoid.alignment(); iBoid.borderCheck(); iBoid.maxSpeedCheck(); iBoid.velocityPositionUpdate(); iBoid.rotation();
+      iBoid.randomizeHeading(); iBoid.separation(); iBoid.cohesion(); iBoid.alignment(); iBoid.borderCheck(); iBoid.maxSpeedCheck(); iBoid.velocityPositionUpdate(); iBoid.rotation();
     }, 1000/30)
   );
   document.body.appendChild(iBoid.element);
